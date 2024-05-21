@@ -11,4 +11,6 @@ public class ArrayListTest extends ListTest {
 	  collection = new ArrayList<Integer>();
 	  super.setUp();
   }
+  
+  
 }
