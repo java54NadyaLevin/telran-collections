@@ -131,13 +131,13 @@ public class ArrayList<T> implements List<T> {
 
 	@Override
 	public int lastIndexOf(T pattern) {
-		int result = 0;
+		int index = -1;
 		for (int i = 0; i < size; i++) {
 			if (array[i] == pattern) {
-				result++;
+				index = i;
 			}
 		}
-		return result;
+		return index;
 	}
 
 }
