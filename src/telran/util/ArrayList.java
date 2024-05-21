@@ -40,18 +40,22 @@ public class ArrayList<T> implements List<T> {
 	 * adds object at end of array, that is, at index == size
 	 */
 	public boolean add(T obj) {
+		checksize();
+		array[size++] = obj;
+		return true;
+	}
+
+	private void checksize() {
 		if (size == array.length) {
 			allocate();
 		}
-		array[size++] = obj;
-		return true;
 	}
 
 	private void allocate() {
 		array = Arrays.copyOf(array, array.length * 2);
 
 	}
-
+    
 	@Override
 	public boolean remove(T pattern) {
 		int index = indexOf(pattern);
@@ -74,6 +78,12 @@ public class ArrayList<T> implements List<T> {
 
 		return size;
 	}
+	
+	private void checkIndex(int index) {
+		if (index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException();
+		}
+	}
 
 	@Override
 	public Iterator<T> iterator() {
@@ -89,21 +99,12 @@ public class ArrayList<T> implements List<T> {
 	@Override
 	public void add(int index, T obj) {
 		checkIndex(index);
-		if (size == array.length) {
-			allocate();
-		}
+		checksize();
 		for (int i = size; i > index; i--) {
 			array[i] = array[i - 1];
 		}
 		array[index] = obj;
 		size++;
-	}
-
-	private void checkIndex(int index) {
-		if (index < 0 || index >= size) {
-			throw new IndexOutOfBoundsException();
-		}
-
 	}
 
 	@Override
