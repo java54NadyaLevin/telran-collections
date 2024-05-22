@@ -40,7 +40,7 @@ public abstract class CollectionTest {
 	@Test
 	void addResultTest() {
 		boolean res = collection.add(Integer.valueOf(7));
-		assertEquals(true, res);
+		assertTrue(res);
 	}
 	
 	@Test
@@ -54,14 +54,14 @@ public abstract class CollectionTest {
 	@Test
 	void removeResultTest() {
 		boolean res = collection.remove(Integer.valueOf(7));
-		assertEquals(false, res);
+		assertFalse(res);
 	}
 	
 	@Test
 	void containsTest() {
 		boolean res1 = collection.contains(Integer.valueOf(100));
-		assertEquals(true, res1);
+		assertTrue(res1);
 		boolean res2 = collection.contains(Integer.valueOf(22));
-		assertEquals(false, res2);
+		assertFalse(res2);
 	}	
 }

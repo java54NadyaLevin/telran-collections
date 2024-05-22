@@ -2,13 +2,17 @@ package telran.util.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.lang.reflect.Array;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import telran.util.ArrayList;
 import telran.util.List;
 
 public abstract class ListTest extends CollectionTest {
 	List<Integer> list;
+	List<Integer> actual;
 
 	@BeforeEach
 	@Override
@@ -26,10 +30,13 @@ public abstract class ListTest extends CollectionTest {
 
 	@Test
 	void listAddTest() {
-		Integer[] expected = { -20, 10, 1, 4, 100, -5 };
+		Integer[] expected1 = { -20, 10, 1, 4, 100, -5 };
+		Integer[] expected2 = { -20, 10, 1, 4, 100, -5, 7 };
 		list.add(3, Integer.valueOf(4));
-		assertArrayEquals(expected, list.stream().toArray(Integer[]::new));
-		assertThrowsExactly(IndexOutOfBoundsException.class, () -> list.add(13, 2));
+		assertArrayEquals(expected1, list.stream().toArray(Integer[]::new));
+		list.add(6, Integer.valueOf(7));
+		assertArrayEquals(expected2, list.stream().toArray(Integer[]::new));
+		assertThrowsExactly(IndexOutOfBoundsException.class, () -> list.add(33, 2));
 		assertThrowsExactly(IndexOutOfBoundsException.class, () -> list.add(-3, 3));
 	}
 

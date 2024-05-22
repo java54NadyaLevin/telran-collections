@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class ArrayList<T> implements List<T> {
-	private static final int DEFAULT_CAPACITY = 16;
+	private static final int DEFAULT_CAPACITY = 6;
 	private int size;
 	private T[] array;
 
@@ -55,7 +55,7 @@ public class ArrayList<T> implements List<T> {
 		array = Arrays.copyOf(array, array.length * 2);
 
 	}
-    
+
 	@Override
 	public boolean remove(T pattern) {
 		int index = indexOf(pattern);
@@ -78,7 +78,7 @@ public class ArrayList<T> implements List<T> {
 
 		return size;
 	}
-	
+
 	private void checkIndex(int index) {
 		if (index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException();
@@ -98,8 +98,11 @@ public class ArrayList<T> implements List<T> {
 
 	@Override
 	public void add(int index, T obj) {
-		checkIndex(index);
-		checksize();
+
+		if (index < 0 || index > size) {
+			throw new IndexOutOfBoundsException();
+		}
+			checksize();
 		for (int i = size; i > index; i--) {
 			array[i] = array[i - 1];
 		}
