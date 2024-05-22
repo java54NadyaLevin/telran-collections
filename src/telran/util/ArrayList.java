@@ -123,7 +123,7 @@ public class ArrayList<T> implements List<T> {
 	@Override
 	public int indexOf(T pattern) {
 		int index = 0;
-		while (index < size && array[index] != pattern) {
+		while (index < size && !array[index].equals(pattern)) {
 			index++;
 		}
 		return index == size ? -1 : index;
@@ -134,7 +134,7 @@ public class ArrayList<T> implements List<T> {
 	public int lastIndexOf(T pattern) {
 		int index = -1;
 		for (int i = 0; i < size; i++) {
-			if (array[i] == pattern) {
+			if (array[i].equals(pattern)) {
 				index = i;
 			}
 		}
